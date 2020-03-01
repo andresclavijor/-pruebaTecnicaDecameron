@@ -1,0 +1,109 @@
+<div class="dialog-content-wrapper tamañoMaximo">
+  <mat-toolbar class="mat-accent m-0 mat-toolbar mat-toolbar-multiple-rows">
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span></span>
+      <button class="botonClase" mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <form [formGroup]="clienteForm" style="padding: 20px;" (ngSubmit)="guardarCliente(clienteForm.value);">
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Nombres</mat-label>
+          <input matInput type="text" placeholder="Ingrese sus nombres" autocomplete="off" formControlName="nombres"
+             required>
+            <mat-error *ngIf="this.clienteForm.get('nombres').hasError('pattern')">
+              No se permiten números ni caracteres especiales
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput type="text" placeholder="Ingrese sus apellidos" autocomplete="off" formControlName="apellidos"
+             required>
+            <mat-error *ngIf="this.clienteForm.get('apellidos').hasError('pattern')">
+              No se permiten números ni caracteres especiales
+            </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Tipo identificación</mat-label>
+          <mat-select formControlName="tipoid">
+            <mat-option [value]="tipoIdentificacion" *ngFor="let tipoIdentificacion of tiposIdentificacion" >
+              {{tipoIdentificacion?.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>No. identificación</mat-label>
+          <input matInput type="text" placeholder="Ingrese su identificación" autocomplete="off"
+            formControlName="identificacion" required>
+            <mat-error *ngIf="this.clienteForm.get('identificacion').hasError('pattern')">
+              No se permiten letras ni caracteres especiales
+            </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Paises</mat-label>
+          <mat-select  formControlName="pais_nace" #pais (selectionChange)="cambioPais(pais.value)">
+            <mat-option [value]="pais" *ngFor="let pais of paises" >
+              {{pais?.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Departamentos</mat-label>
+          <mat-select formControlName="depto_nace" #departamento (selectionChange)="cambioDepartamento(departamento.value)">
+            <mat-option [value]="departamento" *ngFor="let departamento of departamentos" >
+              {{departamento?.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Ciudades</mat-label>
+          <mat-select formControlName="ciu_nace">
+            <mat-option [value]="ciudad" *ngFor="let ciudad of ciudades" >
+              {{ciudad?.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>No. teléfono</mat-label>
+          <input matInput type="text" placeholder="Ingrese su teléfono" autocomplete="off"
+            formControlName="telefono"  required>
+            <mat-error *ngIf="this.clienteForm.get('telefono').hasError('pattern')">
+              No se permiten letras ni caracteres especiales
+            </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput type="text" placeholder="Ingrese su correo" autocomplete="off" formControlName="correo"
+             required>
+            <mat-error *ngIf="this.clienteForm.get('correo').hasError('pattern')">
+              Por favor ingrese un email valido
+            </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayoutGap="20px">
+      <button mat-raised-button type="submit" class="mat-accent" [disabled]="clienteForm.invalid">
+        Guardar
+      </button>
+      <button mat-button color="primary" class="save-button" type="button" (click)="dialogRef.close(false)">
+        Cancelar
+      </button>
+    </div>
+  </form>

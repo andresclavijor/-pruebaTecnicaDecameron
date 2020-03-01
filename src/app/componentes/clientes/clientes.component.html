@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel #panelFiltros>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filtro
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form  [formGroup]="consultarForm" (ngSubmit)="obtenerClientes(true,consultarForm.value);">
+        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" >
+          <div fxFlex>
+            <mat-form-field fxFlex appearance="outline">
+              <mat-label>Codigo interno</mat-label>
+              <input matInput type="text" placeholder="ingrese dato para filtrar" autocomplete="off" #codigoInterno formControlName="filtro" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="boton-formulario">
+          <button mat-raised-button type="submit" class="mat-accent" [disabled]="consultarForm.invalid">
+            Consultar
+          </button>
+        </div>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>
+
+<div fxLayout="row" fxLayoutAlign="end">
+  <button  mat-mini-fab class="mat-accent margen"
+    aria-label="Add event" matTooltip="Crear cliente" (click)="visualizarCliente(null)">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="example-container ">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="example-table">
+      <!-- Number Column -->
+      <ng-container matColumnDef="nombres">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+        <td mat-cell *matCellDef="let row">{{row?.nombres}}</td>
+      </ng-container>
+      <ng-container matColumnDef="apellidos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+        <td mat-cell *matCellDef="let row">{{row?.apellidos}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tipoid">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo id</th>
+        <td mat-cell *matCellDef="let row">{{row?.tipoid}}</td>
+      </ng-container>
+      <ng-container matColumnDef="identificacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No. Identificacion</th>
+        <td mat-cell *matCellDef="let row">{{row?.identificacion}}</td>
+      </ng-container>
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef>Opciones</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon" (click)="visualizarCliente(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div fxLayout="row" class="boton-formulario">
+      <div fxFlex="84">
+        <button mat-button disabled>Página numero: {{paginaActual}}</button>
+      </div>
+      <div fxFlex="7">
+        <button mat-icon-button aria-label="Example icon-button with a heart icon" [disabled]="paginaActual === 1"
+          (click)="obtenerClientes(false)" class="botones-paginacion" matTooltip="Pagina anterior">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+      </div>
+      <div fxFlex="7">
+        <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="obtenerClientes(true)"
+          [disabled]="deshabilitarSiguiente" class="botones-paginacion" matTooltip="Pagina siguiente">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

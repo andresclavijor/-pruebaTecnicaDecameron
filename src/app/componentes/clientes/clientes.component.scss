@@ -1,0 +1,33 @@
+.example-container {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .boton-formulario {
+    text-align: right;
+  }
+  
+  .botones-paginacion {
+    color: #7d7d7d;
+  }
+  .mat-paginator,
+  .mat-paginator-page-size .mat-select-trigger {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  
+  table {
+    width: 100%;
+  }
+  .boton-formulario {
+    text-align: right;
+  }
+
+  ::ng-deep body.theme-default .mat-card:not([class*='mat-elevation-z']) {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+    padding: 3px;
+  }
+
+  .margen{
+    margin-top: 10px;
+    margin-right: 10px;
+  }

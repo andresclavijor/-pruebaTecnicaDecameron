@@ -1,0 +1,74 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+ 
+// Import app.theme.scss
+@import "app/app.theme";
+ 
+$primary: #0071ce;
+$secundary: #dd0021;
+$terceary: #fbd500;
+$warning: #bf0411;
+$success: #56af31;
+$greey: #9ea1a9;
+$white: #fff;
+$zebraAzul: #e5f1fa;
+$greey-white: #e9e9e9;
+ 
+.app {
+  flex: 1;
+  display: flex;
+  overflow-y: overlay;
+}
+ 
+.scroll-element {
+  min-height: min-content; /* needs vendor prefixes */
+  display: flex;
+}
+ 
+body.theme-default .accent,
+body.theme-default .accent-bg {
+  background-color: $primary !important;
+  color: #fff;
+}
+ 
+.page-layout.carded.fullwidth > .center {
+  width: 100vw;
+  height: 100vh;
+}
+ 
+.page-layout.carded.fullwidth > .center > .header {
+  height: 75px !important;
+  min-height: 50px !important;
+  max-height: 136px !important;
+}
+ 
+.titulo-header {
+  color: #fff;
+  font-weight: bolder;
+  font-size: 25px;
+  letter-spacing: 0.2em;
+}
+ 
+.success-snackbar {
+  background: $success !important;
+  color: $white !important;
+}
+.mat-simple-snackbar-action {
+  color: $white !important;
+}
+ 
+.error-snackbar {
+  background: $warning !important;
+  color: $white !important;
+}
+.mat-simple-snackbar-action {
+  color: $white !important;
+}
+ 
+.warning-snackbar {
+  background: $terceary !important;
+  color: $white !important;
+}
+.mat-simple-snackbar-action {
+  color: $white !important;
+}
